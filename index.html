@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<style>
+div{
+    margin: auto;
+    width: 70%;
+}
+h1{
+    text-align: center;
+}
+</style>
+<body>
+    <div>
+        <h1>計算機</h1>
+        <div>
+            <label>數字1:</label>
+            <input type="text" id="input1">
+            <button py-click="k1(1)">開方</button>
+            <button py-click="k2(1)">開立方</button>
+        </div>
+        <div>
+            <label>數字2:</label>
+            <input type="text" id="input2">
+            <button py-click="k1(2)">開方</button>
+            <button py-click="k2(2)">開立方</button>
+        </div>
+        <div>
+            <button py-click="f(1)">加</button>
+            <button py-click="f(2)">減</button>
+            <button py-click="f(3)">乘</button>
+            <button py-click="f(4)">除</button>
+        </div>
+        <div>
+            <label>結果 :</label>
+            <input type="text" id="input3" disabled="1">
+        </div>
+    </div>
+    <py-script>
+        def f(t):
+            try:
+                output = Element("input3").element
+                num1 = float(Element("input1").element.value)
+                num2 = float(Element("input2").element.value)
+                if t == 1:
+                    output.value = num1 + num2
+                elif t == 2:
+                    output.value = num1 - num2
+                elif t == 3:
+                    output.value = num1 * num2
+                else:
+                    output.value = num1 / num2
+            except:
+                output.value = "Error"
+        def k1(t):
+            try:
+                output = Element("input3").element
+                num = float(Element(f"input{t}").element.value)
+                output.value = num**2
+            except:
+                output.value = "Error"
+        def k2(t):
+            try:
+                output = Element("input3").element
+                num = float(Element(f"input{t}").element.value)
+                output.value = num**3
+            except:
+                output.value = "Error"
+    </py-script>
+</body>
+</html>
